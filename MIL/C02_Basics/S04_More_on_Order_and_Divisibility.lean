@@ -39,7 +39,18 @@ example : min a b = min b a := by
     apply min_le_left
 
 example : max a b = max b a := by
-  sorry
+  induction' le_total with a b ih
+  cify
+
+  have hlhs: max a b <= max b a := by
+
+    admit
+
+  have hrhs: max b a <= max a b := by
+
+    admit
+  exact le_antisymm hlhs hrhs
+
 example : min (min a b) c = min a (min b c) := by
   sorry
 theorem aux : min a b + c ≤ min (a + c) (b + c) := by
@@ -80,5 +91,3 @@ variable (m n : ℕ)
 example : Nat.gcd m n = Nat.gcd n m := by
   sorry
 end
-
-
